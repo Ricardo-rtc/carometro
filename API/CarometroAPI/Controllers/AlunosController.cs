@@ -3,6 +3,8 @@ using CarometroAPI.Interfaces;
 using CarometroAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 
 namespace CarometroAPI.Controllers
 {
@@ -33,6 +35,17 @@ namespace CarometroAPI.Controllers
         {
             return Ok(_alunoRepository.Listar());
         }
+        /// <summary>
+        /// Lista todos os Alunos existentes
+        /// </summary>
+        /// <returns>Uma lista de alunos</returns>
+        [HttpGet("minha")]
+        public IActionResult ListarAluno()
+        {
+            int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return Ok(_alunoRepository.ListarAluno(idUsuario));
+        }
+
 
         /// <summary>
         /// Busca um aluno pelo id

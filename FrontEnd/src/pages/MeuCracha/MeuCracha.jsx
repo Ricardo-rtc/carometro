@@ -15,17 +15,19 @@ export default class MeuCracha extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listaCracha:[],
+            listaCracha: [],
+            listaAlunos: [],
             base64img: '',
-            tipo: ''
+            perido: ''
         };
     }
 
 
 
+
     buscarCrachaAluno() {
 
-        api.get('/usuarios/uses', {
+        api.get('/alunos/minha', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-token')
             }
@@ -54,43 +56,68 @@ export default class MeuCracha extends Component {
             .catch((erro) => console.log(erro));
     };
 
+    buscarPeriodo() {
+        api.get('/Alunos/minha', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-token'),
+            },
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    this.setState({ listaAlunos: resposta.data });
+                }
+            })
+            .catch((erro) => console.log(erro));
+    }
+
 
     componentDidMount() {
         this.buscarCrachaAluno();
         this.buscaImg();
-        this.mostrarCracha();
-      }
+    }
 
 
     render() {
         return (
             <div>
                 <Header />
-                <Link to={'/'}><img class="seta_retorno" src={icone_setas} alt="setas_retorno" /></Link>
-                <main class="container_cracha">
+                <Link to={'/'}><img className="seta_retorno" src={icone_setas} alt="setas_retorno" /></Link>
+                <main className="container_cracha">
 
                     <div className='a'>
                         <div className="border">
                             {
                                 this.state.listaCracha.map((itens) => {
-                                    switch (itens.idTipoUsuario) {
-                                        case 2:
-                                            this.setState.tipo = 'ALUNO'
-                                            break;
-                                            case 3:
-                                                this.setState.tipo = 'PROFESSOR'
-                                            break;
-                                    }
+                                     
                                     return (
-                                        <div className="fundo" key={itens.idUsuario}>
+                                        <div className="fundo" key={itens.idAluno}>
                                             <img className='logo' src={imagem_base} alt="" />
                                             <img className='aluno' src={`data:image;base64,${this.state.base64img}`} alt="" />
-                                            <span>{itens.nomeUsuario}</span>
+                                            <span>{itens.idUsuarioNavigation.nomeUsuario}</span>
                                             <div className='space'>
-                    
-                                                <span>{this.state.tipo}</span>
+
+                                                {
+                                                    itens.idUsuarioNavigation.idTipoUsuario === 3 &&
+                                                    <span>PROFESSOR</span>
+                                                }
+                                                {
+                                                    itens.idUsuarioNavigation.idTipoUsuario === 2 &&
+                                                    <span>ALUNO</span>
+                                                }
+                                                
                                                 <span> </span>
-                                                <span>Manhã</span>
+                                                
+                                                        {
+                                                            itens.idTurmaNavigation.idPeriodo === 1 &&
+                                                            <span>Manhã</span>
+                                                        }
+                                                        {
+                                                            itens.idTurmaNavigation.idPeriodo === 2 &&
+                                                            <span>Tarde</span>
+                                                        }
+                                               
+                                                
+                                                {/* <span>{itens.idAlunoNavigation.idTurmaNavigation.idPeriodoUsuario.nomePeriodo}</span> */}
                                             </div>
                                             <span></span>
                                         </div>

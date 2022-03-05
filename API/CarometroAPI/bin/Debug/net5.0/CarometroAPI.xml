@@ -20,6 +20,12 @@
             </summary>
             <returns>Uma lista de alunos</returns>
         </member>
+        <member name="M:CarometroAPI.Controllers.AlunosController.ListarAluno">
+            <summary>
+            Lista todos os Alunos existentes
+            </summary>
+            <returns>Uma lista de alunos</returns>
+        </member>
         <member name="M:CarometroAPI.Controllers.AlunosController.BuscarPorId(System.Int32)">
             <summary>
             Busca um aluno pelo id

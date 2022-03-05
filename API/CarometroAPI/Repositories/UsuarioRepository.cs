@@ -111,20 +111,7 @@ namespace CarometroAPI.Repositories
 
         public List<Usuario> ListarMeu(int id)
         {
-            return ctx.Usuarios.Select(c => new Usuario
-            {
-                IdUsuario = c.IdUsuario,
-                IdTipoUsuario = c.IdTipoUsuario,
-                IdInstituicao = c.IdInstituicao,
-                NomeUsuario = c.NomeUsuario,
-                Rg = c.Rg,
-                Email = c.Email,
-                Senha = c.Senha,
-                Imagem = c.Imagem,
-                Alunos = c.Alunos,
-                Crachas = c.Crachas,
-                Professors = c.Professors
-            })
+            return ctx.Usuarios
             .Where(c => c.IdUsuario == id)
             .ToList();
         }

@@ -72,8 +72,8 @@ export default class Login extends Component {
           <div className="form_h1">
             <img className="icone_perfil-login" src={user} alt="icone perfil login" />
             <form className='formulario_login' onSubmit={this.efetuaLogin}>
-              <div class="campos">
-                <div class="campo">
+              <div className="campos">
+                <div className="campo">
                   <label for="">E-mail</label>
                   <input
                     type="text"
@@ -83,7 +83,7 @@ export default class Login extends Component {
                     placeholder="Email"
                   />
                 </div>
-                <div class="campo">
+                <div className="campo">
                   <label for="">Senha</label>
                   <input
                     type="password"
@@ -94,8 +94,6 @@ export default class Login extends Component {
                   />
                 </div>
               </div>
-
-
               {
                 this.state.isLoading === true &&
                 <button type='submit' disabled>Carregando...</button>
@@ -106,11 +104,7 @@ export default class Login extends Component {
               }
               <p style={{ color: 'red', fontSize: '25px' }}>{this.state.erroMensagem}</p>
             </form>
-
-
           </div>
-
-
         </main>
       </div>
     )

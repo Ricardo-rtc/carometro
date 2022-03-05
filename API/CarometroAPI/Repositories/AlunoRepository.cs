@@ -57,7 +57,64 @@ namespace CarometroAPI.Repositories
 
         public List<Aluno> Listar()
         {
-            return ctx.Alunos.ToList();
+            return ctx.Alunos
+                .Select(
+                a => new Aluno
+            {
+                IdAluno = a.IdAluno,
+                IdTurma = a.IdTurma,
+                IdUsuario = a.IdUsuario,
+                IdUsuarioNavigation = new Usuario
+                {
+                    IdUsuario = a.IdUsuarioNavigation.IdUsuario,
+                    IdTipoUsuario = a.IdUsuarioNavigation.IdTipoUsuario,
+                    IdInstituicao = a.IdUsuarioNavigation.IdInstituicao,
+                    NomeUsuario = a.IdUsuarioNavigation.NomeUsuario,
+                    Rg = a.IdUsuarioNavigation.Rg,
+                    Email = a.IdUsuarioNavigation.Email,
+                    Senha = a.IdUsuarioNavigation.Senha,
+                    Imagem = a.IdUsuarioNavigation.Imagem,
+                },
+                    IdTurmaNavigation = new Turma
+                    {
+                        IdTurma = a.IdTurmaNavigation.IdTurma,
+                        IdPeriodo = a.IdTurmaNavigation.IdPeriodo,
+                        NomeTurma = a.IdTurmaNavigation.NomeTurma
+                    }
+
+                })
+                .ToList();
+        }
+
+        public List<Aluno> ListarAluno(int id)
+        {
+            return ctx.Alunos
+                .Select(a => new Aluno
+                {
+                    IdAluno = a.IdAluno,
+                    IdTurma = a.IdTurma,
+                    IdUsuario = a.IdUsuario,
+                    IdUsuarioNavigation = new Usuario
+                    {
+                        IdUsuario = a.IdUsuarioNavigation.IdUsuario,
+                        IdTipoUsuario = a.IdUsuarioNavigation.IdTipoUsuario,
+                        IdInstituicao = a.IdUsuarioNavigation.IdInstituicao,
+                        NomeUsuario = a.IdUsuarioNavigation.NomeUsuario,
+                        Rg = a.IdUsuarioNavigation.Rg,
+                        Email = a.IdUsuarioNavigation.Email,
+                        Senha = a.IdUsuarioNavigation.Senha,
+                        Imagem = a.IdUsuarioNavigation.Imagem,
+                    },
+                    IdTurmaNavigation = new Turma
+                    {
+                        IdTurma = a.IdTurmaNavigation.IdTurma,
+                        IdPeriodo = a.IdTurmaNavigation.IdPeriodo,
+                        NomeTurma = a.IdTurmaNavigation.NomeTurma
+                    }
+
+                })
+                .Where(c => c.IdUsuario == id)
+                .ToList();
         }
     }
 }

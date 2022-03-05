@@ -8,6 +8,7 @@ namespace CarometroAPI.Interfaces
         Aluno BuscarPorId(int idAluno);
         void Cadastrar(Aluno novoAluno);
         List<Aluno> Listar();
+        List<Aluno> ListarAluno(int id);
         void Atualizar(Aluno AlunoAtualizado);
         void Deletar(int idAluno);
     }

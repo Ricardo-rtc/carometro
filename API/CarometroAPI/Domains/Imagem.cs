@@ -5,12 +5,13 @@ using System.Collections.Generic;
 
 namespace CarometroAPI.Domains
 {
-    public partial class Cracha
+    public partial class Imagem
     {
-        public int IdCracha { get; set; }
+        public int IdImagem { get; set; }
         public int? IdUsuario { get; set; }
-        public string Token { get; set; }
-        public DateTime UltimaAtualizacao { get; set; }
+        public byte[] Binario { get; set; }
+        public string MimeType { get; set; }
+        public string NomeArquivo { get; set; }
 
         public virtual Usuario IdUsuarioNavigation { get; set; }
     }

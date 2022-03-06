@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { parseJwt } from "../../services/auth";
 
 import Logo_Sesi from '../../assets/img/logo_sesi.png';
-import icone_lista from '../../assets/img/icone_lista.png';
 import icone_agenda from '../../assets/img/icone_agenda.png';
 import icone_perfil from '../../assets/img/icone_perfil.png';
 
@@ -15,13 +14,74 @@ export default class header extends Component {
         if (parseJwt() != null) {
             switch (parseJwt().role) {
                 case '2':
-                    window.location.href = "/meucracha"
+                    window.location.href = "/crachaAluno"
                     break;
                 case '3':
-                    window.location.href = "/meucracha"
+                    window.location.href = "/crachaProfessor"
                     break;
                 default:
                     window.location.href = "/login"
+                    break;
+            }
+
+        } else {
+            alert("Usuário não está logado.")
+        }
+    }
+
+    mostrarCarometro = () => {
+        if (parseJwt() != null) {
+            switch (parseJwt().role) {
+                case '1':
+                    return (
+                        <><img className="icone_carometro" src={icone_agenda} alt="icone carometro" />
+                            <button onClick={() => this.listar()}>Carômetro</button>
+                        </>
+                    )
+                case '2':
+                    return (
+                        <>
+                            <span></span>
+                            <span></span>
+                        </>
+                    )
+                case '3':
+                    return (
+                        <><img className="icone_carometro" src={icone_agenda} alt="icone carometro" />
+                            <button onClick={() => this.listar()}>Carômetro</button>
+                        </>
+                    )
+                default:
+                    break;
+            }
+
+        } else {
+            alert("Usuário não está logado.")
+        }
+    }
+    mostrarPerfil = () => {
+        if (parseJwt() != null) {
+            switch (parseJwt().role) {
+                case '1':
+                    return (
+                        <><img className="icone_carometro" src={icone_perfil} alt="icone carometro" />
+                            <button onClick={() => this.cadastrar()}>Cadastro</button>
+                        </>
+                    )
+                case '2':
+                    return (
+                        <>
+                            <span></span>
+                            <span></span>
+                        </>
+                    )
+                case '3':
+                    return (
+                        <><img className="icone_carometro" src={icone_perfil} alt="icone carometro" />
+                            <button onClick={() => this.listar()}>Carômetro</button>
+                        </>
+                    )
+                default:
                     break;
             }
 
@@ -34,7 +94,7 @@ export default class header extends Component {
         if (parseJwt() != null) {
             switch (parseJwt().role) {
                 case '1':
-                    window.location.href = "/cadastrar"
+                    window.location.href = "/listar"
                     break;
                 case '2':
                     // window.location.href = "/permissao"
@@ -53,6 +113,10 @@ export default class header extends Component {
         }
     }
 
+    cadastrar = () => {
+        window.location.href = '/cadastro'
+    }
+
 
     render() {
 
@@ -60,13 +124,20 @@ export default class header extends Component {
             <header>
                 <div class="container container_header">
                     <Link to={'/'}><img src={Logo_Sesi} alt="logo" /></Link>
-                    <nav class="menu_header">
-                        <img class="icone_cracha" src={icone_lista} alt="icone lista" />
-                        <button onClick={() => this.mostrarCracha()}>Meu crachá</button>
-                        <img class="icone_carometro" src={icone_agenda} alt="icone carometro" />
-                        <button onClick={() => this.listar()}>Carômetro</button>
-                        <img class="icone_perfil" src={icone_perfil} alt="icone perfil" />
-                        <Link to={'/perfil'}>Perfil</Link>
+                    <nav className="menu_header">
+                        <span></span>
+                        <span></span>
+
+
+                        {
+                            this.mostrarCarometro()
+                        }
+                        {
+                            this.mostrarPerfil()
+                        }
+
+
+
                     </nav>
                 </div>
             </header>

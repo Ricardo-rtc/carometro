@@ -47,14 +47,14 @@ namespace CarometroAPI.Repositories
                 usuarioBuscado.Senha = usuarioAtualizado.Senha;
             }
 
-            if (usuarioAtualizado.Imagem != null)
-            {
-                usuarioBuscado.Imagem = usuarioAtualizado.Imagem;
-            }
-
             ctx.Usuarios.Update(usuarioBuscado);
 
             ctx.SaveChanges();
+        }
+
+        public Usuario BuscarPorEmail(string email)
+        {
+            return ctx.Usuarios.FirstOrDefault(u => u.Email == email);
         }
 
         public Usuario BuscarPorId(int idUsuario)
@@ -69,30 +69,19 @@ namespace CarometroAPI.Repositories
             ctx.SaveChanges();
         }
 
+
         public string ConsultarImagem(int idUsuario)
         {
-            CriarPasta();
+            Imagem imagemUsuario = new Imagem();
 
-            string nome_novo = idUsuario.ToString() + ".png";
-            string caminho = Path.Combine("Perfil", nome_novo);
+            imagemUsuario = ctx.Imagems.FirstOrDefault(i => i.IdUsuario == idUsuario);
 
-            if (File.Exists(caminho))
+            if (imagemUsuario != null)
             {
-                byte[] bytesArquivo = File.ReadAllBytes(caminho);
-                return Convert.ToBase64String(bytesArquivo);
+                return Convert.ToBase64String(imagemUsuario.Binario);
             }
 
             return null;
-        }
-
-        public void CriarPasta()
-        {
-            string pasta = "Perfil";
-
-            if (!Directory.Exists(pasta))
-            {
-                Directory.CreateDirectory(pasta);
-            }
         }
 
         public void Deletar(int idUsuario)
@@ -141,14 +130,38 @@ namespace CarometroAPI.Repositories
             return null;
         }
 
-        public void SalvarImagem(IFormFile foto, int idUsuario)
+        public void SalvarImagem(int idUsuario, IFormFile foto)
         {
-            string nome_novo = idUsuario.ToString() + ".png";
+            Imagem imagemUsuario = new Imagem();
 
-            using (var stream = new FileStream(Path.Combine("Perfil", nome_novo), FileMode.Create))
+
+            using (var ms = new MemoryStream())
             {
-                foto.CopyTo(stream);
+                foto.CopyTo(ms);
+                imagemUsuario.Binario = ms.ToArray();
+                imagemUsuario.NomeArquivo = foto.FileName;
+                imagemUsuario.MimeType = foto.FileName.Split('.').Last();
+                imagemUsuario.IdUsuario = idUsuario;
             }
+
+            Imagem fotoexistente = new Imagem();
+            fotoexistente = ctx.Imagems.FirstOrDefault(i => i.IdUsuario == idUsuario);
+
+            if (fotoexistente != null)
+            {
+                fotoexistente.Binario = imagemUsuario.Binario;
+                fotoexistente.NomeArquivo = imagemUsuario.NomeArquivo;
+                fotoexistente.MimeType = imagemUsuario.MimeType;
+                fotoexistente.IdUsuario = idUsuario;
+
+                ctx.Imagems.Update(fotoexistente);
+            }
+            else
+            {
+                ctx.Imagems.Add(imagemUsuario);
+            }
+
+            ctx.SaveChanges();
         }
     }
 }

@@ -64,6 +64,7 @@ namespace CarometroAPI.Repositories
                 IdAluno = a.IdAluno,
                 IdTurma = a.IdTurma,
                 IdUsuario = a.IdUsuario,
+                Matricula = a.Matricula,
                 IdUsuarioNavigation = new Usuario
                 {
                     IdUsuario = a.IdUsuarioNavigation.IdUsuario,
@@ -72,8 +73,7 @@ namespace CarometroAPI.Repositories
                     NomeUsuario = a.IdUsuarioNavigation.NomeUsuario,
                     Rg = a.IdUsuarioNavigation.Rg,
                     Email = a.IdUsuarioNavigation.Email,
-                    Senha = a.IdUsuarioNavigation.Senha,
-                    Imagem = a.IdUsuarioNavigation.Imagem,
+                    Senha = a.IdUsuarioNavigation.Senha
                 },
                     IdTurmaNavigation = new Turma
                     {
@@ -102,8 +102,7 @@ namespace CarometroAPI.Repositories
                         NomeUsuario = a.IdUsuarioNavigation.NomeUsuario,
                         Rg = a.IdUsuarioNavigation.Rg,
                         Email = a.IdUsuarioNavigation.Email,
-                        Senha = a.IdUsuarioNavigation.Senha,
-                        Imagem = a.IdUsuarioNavigation.Imagem,
+                        Senha = a.IdUsuarioNavigation.Senha
                     },
                     IdTurmaNavigation = new Turma
                     {

@@ -53,5 +53,28 @@ namespace CarometroAPI.Repositories
         {
             return ctx.Professors.ToList();
         }
+
+        public List<Professor> ListarProf(int id)
+        {
+            return ctx.Professors
+                .Select(
+                a => new Professor
+                {
+                    IdProfessor = a.IdProfessor,
+                    IdUsuario = a.IdUsuario,
+                    IdUsuarioNavigation = new Usuario
+                    {
+                        IdUsuario = a.IdUsuarioNavigation.IdUsuario,
+                        IdTipoUsuario = a.IdUsuarioNavigation.IdTipoUsuario,
+                        IdInstituicao = a.IdUsuarioNavigation.IdInstituicao,
+                        NomeUsuario = a.IdUsuarioNavigation.NomeUsuario,
+                        Rg = a.IdUsuarioNavigation.Rg,
+                        Email = a.IdUsuarioNavigation.Email,
+                        Senha = a.IdUsuarioNavigation.Senha
+
+                    }
+                })
+                .ToList();
+        }
     }
 }

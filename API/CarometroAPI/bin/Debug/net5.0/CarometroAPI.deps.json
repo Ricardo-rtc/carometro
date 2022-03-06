@@ -39,6 +39,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.14",
           "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.6",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.14",
+          "Otp.NET": "1.2.2",
           "Swashbuckle.AspNetCore": "6.2.3",
           "System.IdentityModel.Tokens.Jwt": "6.16.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
@@ -831,6 +832,17 @@
         },
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
+        }
+      },
+      "Otp.NET/1.2.2": {
+        "runtime": {
+          "lib/netstandard2.0/Otp.NET.dll": {
+            "assemblyVersion": "1.2.2.0",
+            "fileVersion": "1.2.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Otp.NET.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
@@ -3731,6 +3743,13 @@
       "sha512": "sha512-QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
       "path": "newtonsoft.json.bson/1.0.2",
       "hashPath": "newtonsoft.json.bson.1.0.2.nupkg.sha512"
+    },
+    "Otp.NET/1.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2hrZfkbzeWJ3tNXXt/1beg4IY+nS4F3gIfh4NVFvW0f6Pj51hGpiJ4prBz7Dmrr4ZYrA96rTERVGieZ4xYm7jA==",
+      "path": "otp.net/1.2.2",
+      "hashPath": "otp.net.1.2.2.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",

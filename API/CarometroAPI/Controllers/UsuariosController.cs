@@ -55,20 +55,69 @@ namespace CarometroAPI.Controllers
             return Ok(usuarioBuscado);
         }
 
+        [HttpGet("email")]
+        public IActionResult BuscarPorEmail(string Email)
+        {
+            Usuario usuarioBuscado = _usuarioRepository.BuscarPorEmail(Email);
+
+            if (usuarioBuscado == null)
+            {
+                return NotFound("O Usuário informado não existe!");
+            }
+            return Ok(usuarioBuscado);
+        }
+
         /// <summary>
-        /// Consulta a foto de perfil de um usuário
+        /// Consulta a imagem do usuáro
         /// </summary>
-        /// <returns>A foto em base64</returns>
+        /// <returns>Retorna um base64 e a um status Code - OK</returns>
         [HttpGet("imagem")]
-        public IActionResult salvaImagem()
+        public IActionResult consultarImagem()
         {
             try
             {
+
                 int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
 
                 string base64 = _usuarioRepository.ConsultarImagem(idUsuario);
 
                 return Ok(base64);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Consulta a foto de perfil de um usuário
+        /// </summary>
+        /// <returns>A foto em base64</returns>
+        [HttpPost("imagem")]
+        public IActionResult salvarImagem(IFormFile foto, int idUsuario)
+        {
+            try
+            {
+                //analisar o tamanho do arquivo
+                if (foto.Length > 500000000) //5MB
+                    return BadRequest(new { mensagem = "O tamanho máximo da imagem foi atingido." });
+
+                //analise da extensao do arquivo
+                //Split = retorna uma matriz de caracteres
+                //Last = recupera a ultima posição da matriz.
+                string extensao = foto.FileName.Split('.').Last();
+
+
+                // if (extensao != "png")
+                //  return BadRequest(new { mensagem = "Apenas arquivos .png são obrigatórios." });
+
+                //recuperar id do usuario logado a partir do token.
+                 idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+
+                _usuarioRepository.SalvarImagem(idUsuario, foto);
+
+                return Ok();
 
             }
             catch (Exception ex)
@@ -88,33 +137,6 @@ namespace CarometroAPI.Controllers
             _usuarioRepository.Cadastrar(novoUsuario);
 
             return StatusCode(201);
-        }
-
-        /// <summary>
-        /// Salva uma imagem de perfil do usuário
-        /// </summary>
-        /// <param name="arquivo">imagem a ser salva</param>
-        /// <returns>Status code 200 - OK</returns>
-        [HttpPost("imagem")]
-        public IActionResult postDir(IFormFile arquivo)
-        {
-            try
-            {
-                if (arquivo.Length < 50000) //5MB
-                    return BadRequest(new { mensagem = "O tamanho máximo da imagem foi atingido." });
-                string extensao = arquivo.FileName.Split('.').Last();
-
-                int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-
-                _usuarioRepository.SalvarImagem(arquivo, idUsuario);
-
-                return Ok();
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         /// <summary>

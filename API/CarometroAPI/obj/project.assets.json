@@ -609,6 +609,15 @@
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "Otp.NET/1.2.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Otp.NET.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Otp.NET.dll": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -3180,6 +3189,20 @@
         "lib/netstandard2.0/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.2.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "Otp.NET/1.2.2": {
+      "sha512": "2hrZfkbzeWJ3tNXXt/1beg4IY+nS4F3gIfh4NVFvW0f6Pj51hGpiJ4prBz7Dmrr4ZYrA96rTERVGieZ4xYm7jA==",
+      "type": "package",
+      "path": "otp.net/1.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Otp.NET.dll",
+        "lib/netstandard1.3/Otp.NET.dll",
+        "lib/netstandard2.0/Otp.NET.dll",
+        "otp.net.1.2.2.nupkg.sha512",
+        "otp.net.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -7581,6 +7604,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.14",
       "Microsoft.EntityFrameworkCore.SqlServer.Design >= 1.1.6",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.14",
+      "Otp.NET >= 1.2.2",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "System.IdentityModel.Tokens.Jwt >= 6.16.0"
     ]
@@ -7650,6 +7674,10 @@
             "target": "Package",
             "version": "[5.0.14, )"
           },
+          "Otp.NET": {
+            "target": "Package",
+            "version": "[1.2.2, )"
+          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.2.3, )"
@@ -7677,7 +7705,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -271,7 +271,6 @@ C:\Users\50928811867.INFOSCS\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\n
 C:\Users\50928811867.INFOSCS\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\CarometroAPI.genruntimeconfig.cache
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\bin\Debug\net5.0\appsettings.json
-C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\bin\Debug\net5.0\CarometroAPI.StaticWebAssets.xml
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\bin\Debug\net5.0\CarometroAPI.exe
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\bin\Debug\net5.0\CarometroAPI.deps.json
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\bin\Debug\net5.0\CarometroAPI.runtimeconfig.json
@@ -334,8 +333,10 @@ C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\static
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\CarometroAPI.RazorTargetAssemblyInfo.cache
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\CarometroAPI.csproj.CopyComplete
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\CarometroAPI.dll
-C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\refint\CarometroAPI.dll
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\CarometroAPI.xml
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\CarometroAPI.pdb
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\CarometroAPI.genruntimeconfig.cache
 C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\ref\CarometroAPI.dll
+C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\bin\Debug\net5.0\ref\CarometroAPI.dll
+C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\obj\Debug\net5.0\staticwebassets\CarometroAPI.StaticWebAssets.xml
+C:\Users\Ricardo\Desktop\InnerJob_SENAI\API\CarometroAPI\bin\Debug\net5.0\Otp.NET.dll

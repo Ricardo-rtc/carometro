@@ -77,6 +77,13 @@
             <param name="idCracha">id do crachá a ser buscado</param>
             <returns>Um crachá encontrado com status code - 200</returns>
         </member>
+        <member name="M:CarometroAPI.Controllers.CrachasController.ValidarToken(System.Int32)">
+            <summary>
+            Valida um token
+            </summary>
+            <param name="idCracha">id do crachá a ser validado</param>
+            <returns>Um resposta booleana encontrado com status code - 200</returns>
+        </member>
         <member name="M:CarometroAPI.Controllers.CrachasController.Cadastrar(CarometroAPI.Domains.Cracha)">
             <summary>
             Cadastra um Cracha
@@ -173,6 +180,12 @@
             </summary>
             <returns>Uma lista de professores</returns>
         </member>
+        <member name="M:CarometroAPI.Controllers.ProfessoresController.ListarProf">
+            <summary>
+            Lista o professor pelo usuário do Jti
+            </summary>
+            <returns>Uma lista de alunos</returns>
+        </member>
         <member name="M:CarometroAPI.Controllers.ProfessoresController.BuscarPorId(System.Int32)">
             <summary>
             Busca um professor pelo id
@@ -224,7 +237,13 @@
             <param name="idUsuario">id do usuário a ser buscado</param>
             <returns>Um usuário encontrado com status code - 200</returns>
         </member>
-        <member name="M:CarometroAPI.Controllers.UsuariosController.salvaImagem">
+        <member name="M:CarometroAPI.Controllers.UsuariosController.consultarImagem">
+            <summary>
+            Consulta a imagem do usuáro
+            </summary>
+            <returns>Retorna um base64 e a um status Code - OK</returns>
+        </member>
+        <member name="M:CarometroAPI.Controllers.UsuariosController.salvarImagem(Microsoft.AspNetCore.Http.IFormFile,System.Int32)">
             <summary>
             Consulta a foto de perfil de um usuário
             </summary>
@@ -236,13 +255,6 @@
             </summary>
             <param name="novoUsuario">Usuario a ser cadastrado</param>
             <returns>Um status code 201 - Created</returns>
-        </member>
-        <member name="M:CarometroAPI.Controllers.UsuariosController.postDir(Microsoft.AspNetCore.Http.IFormFile)">
-            <summary>
-            Salva uma imagem de perfil do usuário
-            </summary>
-            <param name="arquivo">imagem a ser salva</param>
-            <returns>Status code 200 - OK</returns>
         </member>
         <member name="M:CarometroAPI.Controllers.UsuariosController.Atualizar(CarometroAPI.Domains.Usuario)">
             <summary>

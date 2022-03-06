@@ -4,18 +4,17 @@ import { parseJwt } from '../../services/auth';
 import '../../assets/css/Login.css';
 import background_login from '../../assets/img/img_background_login.png'
 import user from '../../assets/img/user.png'
-import Header from '../../components/header/header'
 
 export default class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // email: 'adm@email.com',
-      // senha: 'adm123',
+      email: 'adm@email.com',
+      senha: 'adm123',
       // email: 'professor@email.com',
       // senha: 'professor123',
-      email: 'aluno@email.com',
-      senha: 'aluno123',
+      // email: 'aluno@email.com',
+      // senha: 'aluno123',
       erroMensagem: '',
       isLoading: false
     };
@@ -41,11 +40,11 @@ export default class Login extends Component {
               break;
             case '2':
               //aluno
-              this.props.history.push('/meucracha')
+              this.props.history.push('/crachaAluno')
               break;
             case '3':
               //prof
-              this.props.history.push('/meucracha')
+              this.props.history.push('/crachaProfessor')
               break;
             default:
               this.props.history.push('/')
@@ -66,7 +65,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div> <Header />
+      <div>
         <main className="container_login">
           <img className="img_banner" src={background_login} alt="bk login" />
           <div className="form_h1">

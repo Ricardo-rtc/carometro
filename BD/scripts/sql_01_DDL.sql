@@ -8,7 +8,7 @@ CREATE TABLE tipoUsuario(
 	idTipoUsuario TINYINT PRIMARY KEY IDENTITY(1,1),
 	nomeTipoUsuario VARCHAR(50) UNIQUE NOT NULL
 )
-GO
+GO	
 
 CREATE TABLE instituicao(
 	idInstituicao SMALLINT PRIMARY KEY IDENTITY(1,1),
@@ -18,20 +18,27 @@ CREATE TABLE instituicao(
 )
 
 CREATE TABLE usuario(
-	idUsuario SMALLINT PRIMARY KEY IDENTITY(1,1),
+	idUsuario INT PRIMARY KEY IDENTITY(1,1),
 	idTipoUsuario TINYINT FOREIGN KEY REFERENCES tipoUsuario(idTipoUsuario),
 	idInstituicao SMALLINT FOREIGN KEY REFERENCES instituicao(idInstituicao),
 	nomeUsuario VARCHAR(256) NOT NULL,
 	rg CHAR(12) UNIQUE NOT NULL,
 	email CHAR(256) UNIQUE NOT NULL,
-	senha VARCHAR(256) NOT NULL,
-	imagem VARCHAR (256) NOT NULL,
+	senha VARCHAR(256) NOT NULL
 );
 GO
 
+CREATE TABLE imagem(
+	idImagem INT PRIMARY KEY IDENTITY(1,1),
+	idUsuario INT FOREIGN KEY REFERENCES usuario(idUsuario),
+	binario VARBINARY(MAX) NOT NULL,
+	mimeType VARCHAR(30) NOT NULL,
+	nomeArquivo VARCHAR(250) NOT NULL
+)
+
 CREATE TABLE professor(
-	idProfessor SMALLINT PRIMARY KEY IDENTITY(1,1),
-	idUsuario SMALLINT FOREIGN KEY REFERENCES usuario(idUsuario),
+	idProfessor INT PRIMARY KEY IDENTITY(1,1),
+	idUsuario INT FOREIGN KEY REFERENCES usuario(idUsuario),
 	matricula VARCHAR(4) UNIQUE NOT NULL,  
 )
 GO
@@ -52,13 +59,14 @@ GO
 CREATE TABLE aluno(
 	idAluno SMALLINT PRIMARY KEY IDENTITY(1,1),
 	idTurma TINYINT FOREIGN KEY REFERENCES turma(idTurma),
-	idUsuario SMALLINT FOREIGN KEY REFERENCES usuario(idUsuario),
+	idUsuario INT FOREIGN KEY REFERENCES usuario(idUsuario),
 	matricula VARCHAR(6) UNIQUE NOT NULL,
 )
 GO
 
 CREATE TABLE cracha(
-	idCracha SMALLINT PRIMARY KEY IDENTITY(1,1),
-	idUsuario SMALLINT FOREIGN KEY REFERENCES usuario(idUsuario),
+	idCracha INT PRIMARY KEY IDENTITY(1,1),
+	idUsuario INT FOREIGN KEY REFERENCES usuario(idUsuario),
 	token VARCHAR(256) UNIQUE NOT NULL,
+	ultimaAtualizacao DATETIME NOT NULL
 )

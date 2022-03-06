@@ -7,6 +7,7 @@ import './index.css';
 import Login from '../src/pages/Login/Login.jsx';
 import Perfil from './pages/Perfil/Perfil.jsx';
 import MeuCracha from './pages/MeuCracha/MeuCracha.jsx';
+import Cracha from './pages/Cracha/Cracha.jsx';
 import Listar from './pages/Listar/Listar.jsx';
 import Cadastro from './pages/Cadastro/Cadastro.jsx';
 import NotFound from './pages/NotFound/NotFound.js';
@@ -23,7 +24,8 @@ const routing = (
         <Route path="/perfil" component={Perfil} />
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/listar" component={Listar} />
-        <Route path="/meucracha" component={MeuCracha} />
+        <Route path="/crachaAluno" component={MeuCracha} />
+        <Route path="/crachaProfessor" component={Cracha} />
         <Route path="/notFound" component={NotFound} /> 
         <Redirect to="/notFound" />
       </Switch>

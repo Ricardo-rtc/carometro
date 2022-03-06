@@ -9,7 +9,7 @@ namespace CarometroAPI.Domains
     {
         public short IdAluno { get; set; }
         public byte? IdTurma { get; set; }
-        public short? IdUsuario { get; set; }
+        public int? IdUsuario { get; set; }
         public string Matricula { get; set; }
 
         public virtual Turma IdTurmaNavigation { get; set; }

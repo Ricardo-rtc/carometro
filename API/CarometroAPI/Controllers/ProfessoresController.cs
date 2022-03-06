@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -36,6 +37,17 @@ namespace CarometroAPI.Controllers
         public IActionResult Listar()
         {
             return Ok(_professorRepository.Listar());
+        }
+
+        /// <summary>
+        /// Lista o professor pelo usuário do Jti
+        /// </summary>
+        /// <returns>Uma lista de alunos</returns>
+        [HttpGet("minha")]
+        public IActionResult ListarProf()
+        {
+            int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return Ok(_professorRepository.ListarProf(idUsuario));
         }
 
         /// <summary>
